@@ -184,6 +184,22 @@ Since this occurs very often and is not very readable, there is a shortcut for l
 
 The seperator can be specified with the second parameter of `list` (default is ',').
 
+### Lookahead rule (experimental)
+
+Lookahead rules are used to check the existence of a node without consuming it: 
+
+	g = Grammy.define do
+		rule a_followed_by_b => 'a' >> lookahead('b')
+		rule b => 'b'
+	end
+
+You can also do negative lookaheads:
+
+	g = Grammy.define do
+		rule a_not_followed_by_b => 'a' >> lookahead_negative('b')
+		rule b => 'b'
+	end
+
 Parsing
 -------
 You can use the defined grammar to parse strings:

@@ -159,6 +159,16 @@ class Grammar
 			RuleReference.new(name)
 		end
 
+		def lookahead(rule)
+			raise unless rule.is_a? Symbol or rule.is_a? Rule
+			Lookahead.new(nil, rule)
+		end
+
+		def lookahead_negative(rule)
+			raise unless rule.is_a? Symbol or rule.is_a? Rule
+			Lookahead.new(nil, rule, reverse: true)
+		end
+
 		def eos
 			EOSRule.new
 		end
